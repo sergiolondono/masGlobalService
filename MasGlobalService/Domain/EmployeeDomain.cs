@@ -12,23 +12,6 @@ namespace MasGlobalService.Domain
 {
     public class EmployeeDomain 
     {      
-        public IEnumerable<EmployeeDTO> getEmployees()
-        {
-            try
-            {
-                IEnumerable<EmployeeDTO> employees = getAllEmployees();
-
-                SalaryFactory factory = new ConcreteSalaryFactory();
-                var employeesCalaculatedSalary = getCalculatedSalaryByEmployee(employees, factory);
-
-                return employeesCalaculatedSalary;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"System Error: {ex.Message}");
-            }
-        }
-
         public IEnumerable<EmployeeDTO> getCalculatedSalaryByEmployee(IEnumerable<EmployeeDTO> employees, SalaryFactory factory)
         {
             foreach (var item in employees)
@@ -48,12 +31,32 @@ namespace MasGlobalService.Domain
             return employees;
         }
 
+        public IEnumerable<EmployeeDTO> getEmployees()
+        {
+            try
+            {
+                IEnumerable<EmployeeDTO> employees = getAllEmployees();
+
+                SalaryFactory factory = new ConcreteSalaryFactory();
+                var employeesCalaculatedSalary = getCalculatedSalaryByEmployee(employees, factory);
+
+                return employeesCalaculatedSalary;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"System Error: {ex.Message}");
+            }
+        }
+
         public EmployeeDTO getEmployeeById(int id)
         {
             try
             {
                 IEnumerable<EmployeeDTO> employees = getAllEmployees();
-                var singleEmployee = employees.Where(e => e.id == id).FirstOrDefault();
+                SalaryFactory factory = new ConcreteSalaryFactory();
+                var employeesCalaculatedSalary = getCalculatedSalaryByEmployee(employees, factory);
+
+                var singleEmployee = employeesCalaculatedSalary.Where(e => e.id == id).FirstOrDefault();
                 return singleEmployee;
             }
             catch (Exception ex)

@@ -168,7 +168,6 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="DAL\EmployeeDAL.cs" />
     <Compile Include="Domain\EmployeeDomain.cs" />
     <Compile Include="DTO\EmployeeDTO.cs" />

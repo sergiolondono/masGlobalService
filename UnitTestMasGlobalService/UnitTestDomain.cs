@@ -42,7 +42,7 @@ namespace UnitTestMasGlobalService
             List<EmployeeDTO> employees = new List<EmployeeDTO>() {
             new EmployeeDTO(){ id = 2, name = "Pedro",
                                contractTypeName = "MonthlySalaryEmployee",  roleId= 1,
-                               roleName= "Administrator", roleDescription= "",
+                               roleName= "Contractor", roleDescription= "",
                                hourlySalary= 50000, monthlySalary= 400000 }
             };
 
