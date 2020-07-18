@@ -172,9 +172,14 @@
     <Compile Include="DAL\EmployeeDAL.cs" />
     <Compile Include="Domain\EmployeeDomain.cs" />
     <Compile Include="DTO\EmployeeDTO.cs" />
+    <Compile Include="Factories\ConcreteSalaryFactory.cs" />
+    <Compile Include="Factories\Salaries\HourlySalary.cs" />
+    <Compile Include="Factories\Salaries\MonthlySalary.cs" />
+    <Compile Include="Factories\SalaryFactory.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\ISalaryFactory.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

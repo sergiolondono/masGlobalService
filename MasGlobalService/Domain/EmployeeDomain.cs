@@ -1,27 +1,51 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using MasGlobalService.Models;
 using MasGlobalService.DAL;
 using AutoMapper;
 using MasGlobalService.DTO;
+using MasGlobalService.Interfaces;
+using MasGlobalService.Factories;
 
 namespace MasGlobalService.Domain
 {
-    public class EmployeeDomain
-    {
+    public class EmployeeDomain 
+    {      
         public IEnumerable<EmployeeDTO> getEmployees()
         {
             try
             {
                 IEnumerable<EmployeeDTO> employees = getAllEmployees();
-                return employees;
+
+                SalaryFactory factory = new ConcreteSalaryFactory();
+                var employeesCalaculatedSalary = getCalculatedSalaryByEmployee(employees, factory);
+
+                return employeesCalaculatedSalary;
             }
             catch (Exception ex)
             {
                 throw new Exception($"System Error: {ex.Message}");
             }
+        }
+
+        public IEnumerable<EmployeeDTO> getCalculatedSalaryByEmployee(IEnumerable<EmployeeDTO> employees, SalaryFactory factory)
+        {
+            foreach (var item in employees)
+            {
+                if (item.contractTypeName == "HourlySalaryEmployee")
+                {
+                    ISalaryFactory factoryHourly = factory.GetCalculatedSalary(item.contractTypeName);
+                    item.AnnualSalary = factoryHourly.calculateSalary(item.hourlySalary);
+                }
+                else if (item.contractTypeName == "MonthlySalaryEmployee")
+                {
+                    ISalaryFactory factoryMonthly = factory.GetCalculatedSalary(item.contractTypeName);
+                    item.AnnualSalary = factoryMonthly.calculateSalary(item.monthlySalary);
+                }
+            }
+
+            return employees;
         }
 
         public EmployeeDTO getEmployeeById(int id)
