@@ -12,24 +12,5 @@ namespace MasGlobalService.DTO
         public decimal hourlySalary { get; set; }
         public decimal monthlySalary { get; set; }
         public decimal AnnualSalary { get; set; }
-
-        //private decimal _AnnualSalary = 0;
-        //public decimal AnnualSalary
-        //{
-        //    get
-        //    {
-        //        if (contractTypeName == "HourlySalaryEmployee")
-        //        {
-        //            _AnnualSalary = 120 * hourlySalary * 12;
-        //        }
-        //        else if (contractTypeName == "MonthlySalaryEmployee")
-        //        {
-        //            _AnnualSalary = monthlySalary * 12;
-        //        }
-        //        return _AnnualSalary;
-        //    }
-        //    set { _AnnualSalary = value; }
-        //}
-
     }
 }
